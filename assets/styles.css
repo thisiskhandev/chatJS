@@ -1,0 +1,121 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+main.main,
+section.chat_row,
+div.chat_column,
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+swiper-container {
+  width: 100%;
+  height: 50%;
+}
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat_row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.chat_column {
+  width: 50%;
+}
+.chat_box {
+  display: flex;
+  background-color: tomato;
+  border-radius: 0 12px 12px 11px;
+  padding: 10px;
+  color: #fff;
+  column-gap: 6px;
+  align-items: top;
+  width: 300px;
+  font-size: 16px;
+  transform: translateX(-30px);
+}
+.chat_box[style*="display: block"] {
+  display: flex !important;
+}
+.chat_box.user {
+  background-color: #ddd;
+  color: #000;
+  transform: translate(60px, 10px);
+  border-radius: 12px 12px 0 11px;
+}
+.avatar {
+  width: 25%;
+}
+.msg {
+  width: 75%;
+}
+.msg h6 {
+  margin-top: 5px;
+  line-height: 1.1rem;
+  font-weight: 300;
+  font-size: 14px;
+}
+.chat_box img {
+  border-radius: 100px;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  object-position: top;
+}
+main.chat_box_main {
+  margin-bottom: 30px;
+}
+section.chat_row > div:first-child {
+  height: 100%;
+  border-right: 2px solid tomato;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  justify-content: center;
+  align-content: end;
+}
+.chat_box {
+  display: none;
+}
+.check_box {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  column-gap: 8px;
+}
+
+.check_content h5 {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.check_content p {
+  font-size: 15px;
+}
+.greeting_col {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+/* ------- DEBUGGING  */

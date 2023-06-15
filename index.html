@@ -4,87 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChatJS</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    />
+    <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body>
-    <style>
-      main.main,
-      section.chat_row,
-      div.chat_column,
-      html,
-      body {
-        position: relative;
-        height: 100%;
-      }
-      body {
-        background: #eee;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color: #000;
-        margin: 0;
-        padding: 0;
-      }
-      swiper-container {
-        width: 100%;
-        height: 100%;
-      }
-      swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .chat_row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-      }
-      .chat_column {
-        width: 50%;
-      }
-    </style>
     <main class="main">
       <section class="chat_row">
-        <div class="chat_column">
-          <swiper-container
-            class="mySwiper"
-            direction="vertical"
-            pagination="true"
-            pagination-clickable="true"
-            id="swiperV"
-          >
-            <swiper-slide>
-              <section class="chat_box">
-                    <h6></h6>
-                <div></div>
-              </section>
-            </swiper-slide>
-            <swiper-slide>Slide 3</swiper-slide>
-            <swiper-slide>Slide 4</swiper-slide>
-            <swiper-slide>Slide 5</swiper-slide>
-            <swiper-slide>Slide 6</swiper-slide>
-            <swiper-slide>Slide 7</swiper-slide>
-            <swiper-slide>Slide 8</swiper-slide>
-            <swiper-slide>Slide 9</swiper-slide>
-          </swiper-container>
+        <div class="chat_column main_chat"></div>
+        <div class="chat_column greeting_col">
+          <section class="check_box">
+            <div class="checked">
+              <img
+                src="./assets/images/check-mark.png"
+                alt="Check Mark"
+                style="max-width: 100%"
+                width="30"
+              />
+            </div>
+            <div class="check_content">
+              <h5><strong>Greeting</strong></h5>
+              <p>A welcome message to initiate the chat. It’s Customizable.</p>
+            </div>
+          </section>
         </div>
-        <div class="chat_column"></div>
       </section>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
-    <script>
-      const swiper = new Swiper("#swiperV", {
-        pagination: true,
-        direction: "vertical",
-        mousewheel: true,
-        speed: 800, // Adjust the speed as desired (in milliseconds)
-      });
-    </script>
+    <button id="runFun">Run Function</button>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/chat-data.js"></script>
+    <script src="./assets/app.js"></script>
   </body>
 </html>
