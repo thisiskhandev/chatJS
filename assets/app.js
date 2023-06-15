@@ -1,16 +1,28 @@
 $(document).ready(function ($) {
   jQuery("#runFun").click(function () {
-    // let lenOfChatBox = jQuery(".chat_box_main").length;
+    let lenOfChatBox = jQuery(".chat_box_main").length;
     let chatDuration = 3000;
+    let totalTimeDuration = chatDuration * lenOfChatBox - chatDuration;
+
     jQuery(".agent").each(function (ind, elem) {
       let duration = chatDuration * ind;
       jQuery(elem).delay(duration).slideDown(300);
+      //   console.warn(duration);
     });
-
     setTimeout(() => {
       jQuery(".user").each(function (ind, elem) {
         let duration = chatDuration * ind;
         jQuery(elem).delay(duration).slideDown(350);
+      });
+      jQuery(".checked img").each(function (ind, elem) {
+        let duration = chatDuration * ind;
+        jQuery(elem).delay(duration).fadeIn(350);
+      });
+      jQuery(".check_content").each(function (ind, elem) {
+        let duration = chatDuration * ind;
+        setTimeout(function () {
+          jQuery(elem).css("color", "#000");
+        }, duration);
       });
     }, 1000);
   });
@@ -52,6 +64,26 @@ $(document).ready(function ($) {
           </main>
     `;
     jQuery(".main_chat").append(chats);
+  });
+
+  jQuery(chatData).map(function (ind, data) {
+    let chats = `
+    <section class="check_box">
+            <div class="checked">
+              <img
+                src="./assets/images/check-mark.png"
+                alt="Check Mark"
+                style="max-width: 100%"
+                width="30"
+              />
+            </div>
+            <div class="check_content">
+              <h5><strong>${data.infoTitle}</strong></h5>
+              <p>${data.infoMsg}</p>
+            </div>
+          </section>
+    `;
+    jQuery(".greeting_col").append(chats);
   });
 });
 
