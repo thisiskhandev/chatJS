@@ -1,31 +1,33 @@
 $(document).ready(function ($) {
-  jQuery("#runFun").click(function () {
-    let lenOfChatBox = jQuery(".chat_box_main").length;
-    let chatDuration = 3000;
-    let totalTimeDuration = chatDuration * lenOfChatBox - chatDuration;
+  jQuery("#runFun").click(function () {});
 
+  let lenOfChatBox = jQuery(".chat_box_main").length;
+  let chatDuration = 3000;
+  let totalTimeDuration = chatDuration * lenOfChatBox - chatDuration;
+
+  setTimeout(function () {
     jQuery(".agent").each(function (ind, elem) {
       let duration = chatDuration * ind;
       jQuery(elem).delay(duration).slideDown(300);
       //   console.warn(duration);
     });
-    setTimeout(() => {
-      jQuery(".user").each(function (ind, elem) {
-        let duration = chatDuration * ind;
-        jQuery(elem).delay(duration).slideDown(350);
-      });
-      jQuery(".checked img").each(function (ind, elem) {
-        let duration = chatDuration * ind;
-        jQuery(elem).delay(duration).fadeIn(350);
-      });
-      jQuery(".check_content").each(function (ind, elem) {
-        let duration = chatDuration * ind;
-        setTimeout(function () {
-          jQuery(elem).css("color", "#000");
-        }, duration);
-      });
-    }, 1000);
-  });
+  }, 0);
+  setTimeout(function () {
+    jQuery(".user").each(function (ind, elem) {
+      let duration = chatDuration * ind;
+      jQuery(elem).delay(duration).slideDown(350);
+    });
+    jQuery(".checked img").each(function (ind, elem) {
+      let duration = chatDuration * ind;
+      jQuery(elem).delay(duration).fadeIn(350);
+    });
+    jQuery(".check_content").each(function (ind, elem) {
+      let duration = chatDuration * ind;
+      setTimeout(function () {
+        jQuery(elem).css("color", "#000");
+      }, duration);
+    });
+  }, 1000);
 
   jQuery(chatData).map(function (ind, data) {
     let chats = `
