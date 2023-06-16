@@ -166,3 +166,10 @@ section.chat_row > .main_chat {
     transform: translate(0, 10px);
   }
 }
+/* DEBUGGING */
+.agent:not(:first-child) {
+  background-color: orange;
+}
+.user + .user {
+  background-color: slategray;
+}

@@ -1,55 +1,137 @@
 $(document).ready(function ($) {
-  jQuery("#runFun").click(function () {});
-
-  let lenOfChatBox = jQuery(".chat_box_main").length;
-  let chatDuration = 3000;
-  let totalTimeDuration = chatDuration * lenOfChatBox - chatDuration;
-
-  setTimeout(function () {
-    jQuery(".agent").each(function (ind, elem) {
-      let duration = chatDuration * ind;
-      jQuery(elem).delay(duration).slideDown(300);
-      //   console.warn(duration);
-    });
-  }, 0);
-  setTimeout(function () {
-    jQuery(".user").each(function (ind, elem) {
-      let duration = chatDuration * ind;
-      jQuery(elem).delay(duration).slideDown(350);
-    });
-    jQuery(".checked img").each(function (ind, elem) {
-      let duration = chatDuration * ind;
-      jQuery(elem).delay(duration).fadeIn(350);
-    });
-    jQuery(".check_content").each(function (ind, elem) {
-      let duration = chatDuration * ind;
-      setTimeout(function () {
-        jQuery(elem).css("color", "#000");
-      }, duration);
-    });
+  // DEBUGGING
+  let time = 0;
+  setInterval(() => {
+    time = time + 1;
+    jQuery("#timer").text(time);
   }, 1000);
 
+  jQuery("#runFun").click(function () {});
+  jQuery("#resetFun").click(function () {
+    jQuery(".chat_box").fadeOut(300);
+    jQuery(".checked img").fadeOut(300);
+    jQuery(".check_content").css("color", "gray");
+  });
+
+  let lenOfChatBox = chatData.length;
+  let chatDuration = 3000;
+  let totalTimeDuration = chatDuration * lenOfChatBox;
+  let firstDelayUser = chatData[0].agent.length;
+  firstDelayUser = firstDelayUser * chatDuration - chatDuration + 2000;
+  // Display Chat
+  function chatDisplay() {
+    setTimeout(function () {
+      jQuery(".agent").each(function (ind, elem) {
+        let duration = chatDuration * ind;
+        jQuery(elem).delay(duration).slideDown(300);
+        console.log(elem);
+      });
+    }, 1000);
+    setTimeout(function () {
+      // jQuery(".user").each(function (ind, elem) {
+      //   let duration = chatDuration * ind;
+      //   jQuery(elem).delay(duration).slideDown(350);
+      // });
+      jQuery(".checked img").each(function (ind, elem) {
+        let duration = chatDuration * ind;
+        jQuery(elem).delay(duration).fadeIn(350);
+      });
+      jQuery(".check_content").each(function (ind, elem) {
+        let duration = chatDuration * ind;
+        setTimeout(function () {
+          jQuery(elem).css("color", "#000");
+        }, duration);
+      });
+    }, firstDelayUser);
+  }
+  chatDisplay();
+
+  // Reset Loop after Total Time Duration completes
+  function resetFun() {
+    // Calling Display Chat function
+    setTimeout(function () {
+      jQuery(".chat_box").fadeOut(300);
+      jQuery(".checked img").fadeOut(300);
+      jQuery(".check_content").css("color", "gray");
+      chatDisplay();
+    }, totalTimeDuration);
+  }
+  // resetFun();
+
+  // Data Mapping
   jQuery(chatData).map(function (ind, data) {
+    let agentChatBox = "";
+    data.agent.forEach(function (agentMsgArr, agentIndex) {
+      agentChatBox += `
+      <section class="chat_box agent">
+      <div class="avatar">
+        <img
+          src="./assets/images/agent.jpeg"
+          alt="Agent"
+          width="60"
+          style="max-width: 100%"
+        />
+      </div>
+      <div class="msg">
+        <h4>Agent:</h4>
+        <h6>
+          ${agentMsgArr}
+        </h6>
+      </div>
+    </section>
+    `;
+    });
+
+    let userChatBox = "";
+    data.agent.forEach(function (userMsgArr, userIndex) {
+      userChatBox += `
+      <section class="chat_box user">
+      <div class="avatar">
+        <img
+          src="./assets/images/user.jpeg"
+          alt="User"
+          width="60"
+          style="max-width: 100%"
+        />
+      </div>
+      <div class="msg">
+        <h4>Visitor:</h4>
+        <h6>${userMsgArr}</h6>
+      </div>
+    </section>
+    `;
+    });
+
     let chats = `
     <main class="chat_box_main">
-            <section class="chat_box agent">
-              <div class="avatar">
-                <img
-                  src="./assets/images/agent.jpeg"
-                  alt="Agent"
-                  width="60"
-                  style="max-width: 100%"
-                />
-              </div>
-              <div class="msg">
-                <h4>Agent:</h4>
-                <h6>
-                  ${data.agent}
-                </h6>
-              </div>
-            </section>
+            ${
+              data.agent.length > 1
+                ? agentChatBox
+                : `
+                <section class="chat_box agent">
+                          <div class="avatar">
+                            <img
+                              src="./assets/images/agent.jpeg"
+                              alt="Agent"
+                              width="60"
+                              style="max-width: 100%"
+                            />
+                          </div>
+                          <div class="msg">
+                            <h4>Agent:</h4>
+                            <h6>
+                              ${data.agent}
+                            </h6>
+                          </div>
+                        </section>
+                `
+            }
 
-            <section class="chat_box user">
+            ${
+              data.user.length > 1
+                ? userChatBox
+                : `
+                <section class="chat_box user">
               <div class="avatar">
                 <img
                   src="./assets/images/user.jpeg"
@@ -59,12 +141,14 @@ $(document).ready(function ($) {
                 />
               </div>
               <div class="msg">
-                <h4>John Kardy:</h4>
+                <h4>Visitor:</h4>
                 <h6>${data.user}</h6>
               </div>
             </section>
-          </main>
-    `;
+                `
+            }
+            </main>`;
+    
     jQuery(".main_chat").append(chats);
   });
 
@@ -89,4 +173,4 @@ $(document).ready(function ($) {
   });
 });
 
-// console.table(chatData)
+// console.log(chatData[0].agent[0])
