@@ -14,35 +14,45 @@ $(document).ready(function ($) {
   });
 
   let lenOfChatBox = chatData.length;
-  let chatDuration = 3000;
+  let chatDuration = 2000;
   let totalTimeDuration = chatDuration * lenOfChatBox;
   let firstDelayUser = chatData[0].agent.length;
   firstDelayUser = firstDelayUser * chatDuration - chatDuration + 2000;
   // Display Chat
   function chatDisplay() {
     setTimeout(function () {
-      jQuery(".agent").each(function (ind, elem) {
+      jQuery(".chat_box.user:not(.user+.user)").addClass("user_first_node");
+      jQuery(".chat_box").each(function (ind, elem) {
         let duration = chatDuration * ind;
         jQuery(elem).delay(duration).slideDown(300);
-        console.log(elem);
-      });
-    }, 1000);
-    setTimeout(function () {
-      // jQuery(".user").each(function (ind, elem) {
-      //   let duration = chatDuration * ind;
-      //   jQuery(elem).delay(duration).slideDown(350);
-      // });
-      jQuery(".checked img").each(function (ind, elem) {
-        let duration = chatDuration * ind;
-        jQuery(elem).delay(duration).fadeIn(350);
-      });
-      jQuery(".check_content").each(function (ind, elem) {
-        let duration = chatDuration * ind;
-        setTimeout(function () {
-          jQuery(elem).css("color", "#000");
+        setTimeout(() => {
+          jQuery(elem).addClass("activated");
+          // jQuery(".checked img").each(function (ind, elem) {
+          //   let duration = chatDuration * ind;
+          //   jQuery(elem).delay(duration).fadeIn(350);
+          // });
+          // jQuery(".check_content").each(function (ind, elem) {
+          //   let duration = chatDuration * ind;
+          //   setTimeout(function () {
+          //     jQuery(elem).css("color", "#000");
+          //   }, duration);
+          // });
         }, duration);
       });
-    }, firstDelayUser);
+    }, 1000);
+
+    // setTimeout(function () {
+    //   jQuery(".checked img").each(function (ind, elem) {
+    //     let duration = chatDuration * ind;
+    //     jQuery(elem).delay(duration).fadeIn(350);
+    //   });
+    //   jQuery(".check_content").each(function (ind, elem) {
+    //     let duration = chatDuration * ind;
+    //     setTimeout(function () {
+    //       jQuery(elem).css("color", "#000");
+    //     }, duration);
+    //   });
+    // }, firstDelayUser);
   }
   chatDisplay();
 
@@ -148,7 +158,7 @@ $(document).ready(function ($) {
                 `
             }
             </main>`;
-    
+
     jQuery(".main_chat").append(chats);
   });
 

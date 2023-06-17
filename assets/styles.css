@@ -169,7 +169,9 @@ section.chat_row > .main_chat {
 /* DEBUGGING */
 .agent:not(:first-child) {
   background-color: orange;
+  margin-top: 8px;
 }
 .user + .user {
   background-color: slategray;
+  margin-top: 8px;
 }
