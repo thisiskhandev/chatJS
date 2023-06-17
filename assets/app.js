@@ -1,10 +1,10 @@
 $(document).ready(function ($) {
   // DEBUGGING
-  let time = 0;
-  setInterval(() => {
-    time = time + 1;
-    jQuery("#timer").text(time);
-  }, 1000);
+  // let time = 0;
+  // setInterval(() => {
+  //   time = time + 1;
+  //   jQuery("#timer").text(time);
+  // }, 1000);
 
   jQuery("#runFun").click(function () {});
   jQuery("#resetFun").click(function () {
@@ -27,6 +27,7 @@ $(document).ready(function ($) {
         jQuery(elem).delay(duration).slideDown(300);
         setTimeout(() => {
           jQuery(elem).addClass("activated");
+
           // jQuery(".checked img").each(function (ind, elem) {
           //   let duration = chatDuration * ind;
           //   jQuery(elem).delay(duration).fadeIn(350);
@@ -37,9 +38,14 @@ $(document).ready(function ($) {
           //     jQuery(elem).css("color", "#000");
           //   }, duration);
           // });
+          console.log(duration);
         }, duration);
       });
     }, 1000);
+
+    jQuery(".user_first_node.activated").each(function (ind, ele) {
+      console.log(ele);
+    });
 
     // setTimeout(function () {
     //   jQuery(".checked img").each(function (ind, elem) {
@@ -93,7 +99,7 @@ $(document).ready(function ($) {
     });
 
     let userChatBox = "";
-    data.agent.forEach(function (userMsgArr, userIndex) {
+    data.user.forEach(function (userMsgArr, userIndex) {
       userChatBox += `
       <section class="chat_box user">
       <div class="avatar">
